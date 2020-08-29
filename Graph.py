@@ -32,9 +32,25 @@ class Graph:
 
         self.vertex_set.pop(label, None)
 
-    def compact():
-        # TODO
-        pass
+    def compact(self):
+        missing = []
+        for i in range(1, max(self.vertex_set.keys()) + 1):
+            if i not in self.vertex_set.keys():
+                missing += [i]
+
+        while len(missing) > 0:
+            new_label = missing.pop(0)
+            old_label = max(self.vertex_set.keys())
+
+            for v in self.vertex_set.values():
+                if old_label in v.nbhood.keys():
+                    v.nbhood[new_label] = v.nbhood[old_label]
+                    v.nbhood[new_label].label = new_label
+                    del v.nbhood[old_label]
+
+            self.vertex_set[new_label] = self.vertex_set[old_label]
+            self.vertex_set[new_label].label = new_label
+            del self.vertex_set[old_label]
 
     def max_degree(self):
         max_deg = 0
