@@ -44,6 +44,9 @@ class Graph:
             new_label = missing.pop(0)
             old_label = max(self.vertex_set.keys())
 
+            if new_label == old_label:
+                break
+
             changed_vertices.update({old_label: new_label})
 
             for v in self.vertex_set.values():
