@@ -90,11 +90,7 @@ class Graph:
         return subj
 
     def BFS(self, root):
-        # # needs to be compacted first !!
-        # new_labels = self.compact()
-        # root = new_labels[root]
-
-        visited = [False] * len(self.vertex_set)
+        visited = [False] * ( max(self.vertex_set.keys()) + 1 )
         q = []
 
         q += [root]
