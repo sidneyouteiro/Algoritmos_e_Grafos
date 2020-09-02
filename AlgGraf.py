@@ -11,9 +11,10 @@ def test_del_vertex():
 
 def test_compact():
     g = Graph()
-    g.add_vertex(1)
     g.add_vertex(3)
-    g.add_edge(1, 3)
+    g.add_vertex(5)
+    g.add_vertex(7)
+    g.add_edge(7, 3)
     print(g)
     g.compact()
     print(g)
@@ -30,4 +31,4 @@ def test_BFS():
     print(g.BFS(1))
 
 
-test_BFS()
+test_compact()
