@@ -48,7 +48,6 @@ class Graph:
 
         for i in range(len(old_labels)):
             self.change_label(old_labels[i], i)
-            print(f'{old_labels[i]} --> {i}')
 
     def max_degree(self):
         max_deg = 0
