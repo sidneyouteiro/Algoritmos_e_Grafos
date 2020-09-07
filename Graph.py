@@ -63,12 +63,13 @@ class Graph:
                 stranges += [v]
 
         # now present has the matching empty pair
-        i = 1
+        i = 0
         pairs = 0
         while pairs < len(stranges):
             if present[i] == 0:
                 present[pairs] = i
                 pairs += 1
+            i += 1
 
         for i in range(len(stranges)):
             old_label = stranges[i].label
