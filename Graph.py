@@ -43,11 +43,41 @@ class Graph:
         self.vertex_set[new_label].label = new_label
         del self.vertex_set[old_label]
 
-    def compact(self):
+    def _compact(self):
         old_labels = list(self.vertex_set.keys())
 
         for i in range(len(old_labels)):
             self.change_label(old_labels[i], i)
+
+    def compact(self):
+        n = len(self.vertex_set)
+        present = [0] * (n+1)
+        stranges = []
+
+        # present marks with 1 those who are present
+        # stranges has vertexes whose labels > n
+        for v in self.vertex_set.values():
+            if v.label <= n:
+                present[v.label] = 1
+            else:
+                stranges += [v]
+
+        # now present has the matching empty pair
+        i = 1
+        pairs = 0
+        while pairs < len(stranges):
+            if present[i] == 0:
+                present[pairs] = i
+                pairs += 1
+
+        for i in range(len(stranges)):
+            old_label = stranges[i].label
+            stranges[i].label = present[i]
+
+            for v in self.vertex_set.values():
+                if old_label in v.nbhood.keys():
+                    del v.nbhood[old_label]
+                    v.nbhood[stranges[i].label] = stranges[i]
 
     def max_degree(self):
         max_deg = 0
