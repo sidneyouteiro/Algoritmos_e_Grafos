@@ -8,6 +8,12 @@ class Vertex:
             return f'{v.label} is already a neighbor of {self.label}'
         self.nbhood[v.label] = v
 
+    def del_neighbor(self,v):
+        if v.label not in self.hbhood.keys():
+            return f'{v.label} is not a neighbor of {self.label}'
+        del self.nbhood[v.label]
+
+
     def degree(self):
         return len(self.nbhood)
 
